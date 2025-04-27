@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Чат | TimeStudy{% endblock %}
+{% block content %}
+    <main>
+    <section class="products" id="product-list">
+        {% for product in products %}
+        <div class="product" data-category="{{ product.category }}">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+            <p class="price">{{ product.price }}</p>
+            <button onclick="addToCart(this)">Купить</button>
+            <button onclick="downloadImage(this)">Скачать фото</button>
+        </div>
+        {% endfor %}
+    </section>
+    <div id="download-modal" class="modal">
+        <div class="modal-content">
+            <h2>Сохранение файла</h2>
+            <p>Выберите путь для сохранения:</p>
+            <input type="text" id="download-path" value="C:/Users/Загрузки/">
+            <button onclick="downloadImage()">Скачать</button>
+            <button onclick="closeDownloadModal()">Отмена</button>
+        </div>
+    </div>
+    </main>
+{% endblock %}

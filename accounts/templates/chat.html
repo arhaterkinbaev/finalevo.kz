@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Чат | TimeStudy{% endblock %}
+{% block content %}
+    <main>
+    <div id="chat-container">
+        <div id="chat-box">
+            {% for message in history %}
+                <div class="message user-message">{{ message.user }}</div>
+                <div class="message bot-message">{{ message.bot }}</div>
+            {% endfor %}
+        </div>
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Напишите сообщение...">
+            <button onclick="sendMessage()">📩</button>
+            <button onclick="startRecognition()">🎤</button>
+        </div>
+
+        <form method="post" action="{% url 'clear_chat_history' %}" style="margin-top: 10px;">
+            {% csrf_token %}
+            <button type="submit" style="margin-top: 10px;">🧹 Очистить историю</button>
+        </form>
+    </div>
+    </main>
+{% endblock %}
